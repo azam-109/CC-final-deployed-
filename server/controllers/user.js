@@ -45,9 +45,18 @@ export const handleUserLogin = async (req, res) => {
     const token = setUser(user);
 
     // Set JWT in HTTP-only cookie
+    // For development (uncomment if needed)
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   secure: false, // Set to true in production (with HTTPS)
+    //   maxAge: 2 * 24 * 60 * 60 * 1000,
+    // });
+
+//production cookie settings
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, // Set to true in production (with HTTPS)
+      secure: true,
+      sameSite: "none",
       maxAge: 2 * 24 * 60 * 60 * 1000,
     });
 
