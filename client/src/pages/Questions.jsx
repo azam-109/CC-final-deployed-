@@ -27,7 +27,7 @@ function Questions() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/questions`, {
+    fetch(`${import.meta.env.VITE_API_URL}/questions`, {
       credentials: "include",
     })
       .then((res) => res.json())

@@ -38,7 +38,7 @@ function CreateBlog() {
     for (const file of files) {
       // 1. ask your server for a presigned URL
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/upload/presign`,
+        `${import.meta.env.VITE_API_URL}/upload/presign`,
         {
           method: "POST",
           credentials: "include",
@@ -75,7 +75,7 @@ function CreateBlog() {
     setDraftError("");
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/blogs/ai/draft`,
+        `${import.meta.env.VITE_API_URL}/blogs/ai/draft`,
         {
           method: "POST",
           credentials: "include",
@@ -122,7 +122,7 @@ function CreateBlog() {
     // then save blog with the S3 URLs
     setSubmitting(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/blogs`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/blogs`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },  // plain JSON now

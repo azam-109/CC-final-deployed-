@@ -29,7 +29,7 @@ function AskQuestion() {
     e.preventDefault();
     const tagValues = tags.map((tag) => tag.value);
 
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/questions`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/questions`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

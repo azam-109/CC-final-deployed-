@@ -18,7 +18,7 @@ function BlogList() {
   const [selectedCollege, setSelectedCollege] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/blogs`, { credentials: "include" })
+    fetch(`${import.meta.env.VITE_API_URL}/blogs`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         setBlogs(data);

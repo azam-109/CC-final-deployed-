@@ -11,7 +11,7 @@ function Inbox() {
 
   // Fetch current user
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/user/me`, {
+    fetch(`${import.meta.env.VITE_API_URL}/user/me`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -20,7 +20,7 @@ function Inbox() {
 
   // Fetch conversations
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/chat/conversations`, {
+    fetch(`${import.meta.env.VITE_API_URL}/chat/conversations`, {
       credentials: "include",
     })
       .then((res) => res.json())

@@ -14,9 +14,9 @@ function Answer() {
   const fetchData = async () => {
     try {
       const [qRes, aRes, uRes] = await Promise.all([
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/questions/${id}`, { credentials: "include" }),
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/answers/${id}`, { credentials: "include" }),
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/user/me`, { credentials: "include" }),
+        fetch(`${import.meta.env.VITE_API_URL}/questions/${id}`, { credentials: "include" }),
+        fetch(`${import.meta.env.VITE_API_URL}/answers/${id}`, { credentials: "include" }),
+        fetch(`${import.meta.env.VITE_API_URL}/user/me`, { credentials: "include" }),
       ]);
 
       const [qData, aData, uData] = await Promise.all([
@@ -46,7 +46,7 @@ function Answer() {
     setSuggesting(true);
     setSuggestError("");
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/ai/suggest`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/ai/suggest`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ function Answer() {
     e.preventDefault();
     if (!answerText.trim()) return;
 
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/answers`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/answers`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -88,7 +88,7 @@ function Answer() {
   };
 
   const handleVote = async (answerId) => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/answers/${answerId}/vote`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/answers/${answerId}/vote`, {
       method: "POST",
       credentials: "include",
     });

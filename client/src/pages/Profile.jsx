@@ -15,10 +15,10 @@ function ProfilePage() {
     const fetchProfile = async () => {
       try {
         const [userRes, qRes, aRes, meRes] = await Promise.all([
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${id}`, { credentials: "include" }),
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/questions/user/${id}`, { credentials: "include" }),
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/answers/user/${id}`, { credentials: "include" }),
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/user/me`, { credentials: "include" }), // ← NEW
+          fetch(`${import.meta.env.VITE_API_URL}/user/${id}`, { credentials: "include" }),
+          fetch(`${import.meta.env.VITE_API_URL}/questions/user/${id}`, { credentials: "include" }),
+          fetch(`${import.meta.env.VITE_API_URL}/answers/user/${id}`, { credentials: "include" }),
+          fetch(`${import.meta.env.VITE_API_URL}/user/me`, { credentials: "include" }), // ← NEW
         ]);
 
         const [userData, qData, aData, meData] = await Promise.all([
@@ -51,7 +51,7 @@ function ProfilePage() {
     setChatLoading(true);
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/chat/conversations`,
+        `${import.meta.env.VITE_API_URL}/chat/conversations`,
         {
           method: "POST",
           credentials: "include",

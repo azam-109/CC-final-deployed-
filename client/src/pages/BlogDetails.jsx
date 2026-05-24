@@ -8,7 +8,7 @@ function BlogDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/blogs/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/blogs/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())

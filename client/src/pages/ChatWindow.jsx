@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 
-const socket = io(import.meta.env.VITE_BACKEND_URL, { withCredentials: true });
+const socket = io(import.meta.env.VITE_API_URL, { withCredentials: true });
 
 function ChatWindow() {
   const { conversationId } = useParams();
@@ -14,7 +14,7 @@ function ChatWindow() {
 
   // fetch current user
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/user/me`, {
+    fetch(`${import.meta.env.VITE_API_URL}/user/me`, {
       credentials: "include",
     })
       .then((r) => r.json())
@@ -26,7 +26,7 @@ function ChatWindow() {
     if (!conversationId) return;
 
     fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/chat/messages/${conversationId}`,
+      `${import.meta.env.VITE_API_URL}/chat/messages/${conversationId}`,
       { credentials: "include" }
     )
       .then((r) => r.json())
