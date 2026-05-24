@@ -53,12 +53,7 @@ const allowedOrigins = [
 
 
 app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      return cb(null, true);
-    }
-    cb(new Error("Not allowed by CORS"));
-  },
+  origin: "https://cc-final-deployed-1.onrender.com",
   credentials: true
 }));
 
