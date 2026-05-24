@@ -12,9 +12,12 @@ function Navbar() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:8000/user/me", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/user/me`,
+          {
+            credentials: "include",
+          }
+        );
 
         const data = await res.json();
 
@@ -31,12 +34,10 @@ function Navbar() {
 
   // Fetch unread message count
   useEffect(() => {
-
     const fetchUnreadCount = async () => {
       try {
-
         const res = await fetch(
-          "http://localhost:8000/chat/unread-count",
+          `${import.meta.env.VITE_BACKEND_URL}/chat/unread-count`,
           {
             credentials: "include",
           }
@@ -45,7 +46,6 @@ function Navbar() {
         const data = await res.json();
 
         setUnreadCount(data.count || 0);
-
       } catch (err) {
         console.error("Failed to fetch unread count");
       }
@@ -66,21 +66,22 @@ function Navbar() {
         fetchUnreadCount
       );
     };
-
   }, []);
 
   // Logout
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:8000/user/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
 
       setUser(null);
 
       navigate("/login");
-
     } catch (err) {
       console.error("Logout failed");
     }
@@ -102,7 +103,10 @@ function Navbar() {
         {/* Nav Links */}
         <div className="flex items-center gap-6 text-sm sm:text-base">
 
-          <Link to="/" className="hover:text-yellow-300 transition-colors">
+          <Link
+            to="/"
+            className="hover:text-yellow-300 transition-colors"
+          >
             Home
           </Link>
 
@@ -134,7 +138,6 @@ function Navbar() {
                     {unreadCount > 9 ? "9+" : unreadCount}
                   </span>
                 )}
-
               </Link>
 
               <Link
