@@ -26,21 +26,23 @@ function CreateBlog() {
 
   // Handle file input change and generate previews
 const handleFileChange = (e) => {
-  const selected = Array.from(e.target.files);
+  const selectedFiles = Array.from(e.target.files);
 
-  setFiles((prev) => {
-    const updated = [...prev, ...selected].slice(0, 5);
-    return updated;
-  });
+  setFiles((prevFiles) => {
+    const updatedFiles = [...prevFiles, ...selectedFiles].slice(0, 5);
 
-  setPreviews((prev) => {
-    const newPreviews = selected.map((f) =>
-      URL.createObjectURL(f)
+    // update previews based on FINAL updated files
+    setPreviews(
+      updatedFiles.map((file) => URL.createObjectURL(file))
     );
 
-    return [...prev, ...newPreviews].slice(0, 5);
+    return updatedFiles;
   });
+
+  // reset input so same file can also be selected again
+  e.target.value = null;
 };
+
 
   // ── PRESIGNED URL UPLOAD ──
   const uploadImagesToS3 = async () => {
