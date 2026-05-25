@@ -263,27 +263,24 @@ const removeImage = (indexToRemove) => {
 
               {previews.map((src, i) => (
 
-                <div
-                  key={i}
-                  className="relative"
+              <div
+                key={i}
+                className="relative overflow-visible"
+              >
+                <img
+                  src={src}
+                  alt={`preview-${i}`}
+                  className="w-24 h-24 object-cover rounded-lg border border-gray-200"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => removeImage(i)}
+                  className="absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-lg z-10"
                 >
-
-                  <img
-                    src={src}
-                    alt={`preview-${i}`}
-                    className="w-24 h-24 object-cover rounded-lg border border-gray-200"
-                  />
-
-                  {/* Remove button */}
-                  <button
-                    type="button"
-                    onClick={() => removeImage(i)}
-                    className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-md"
-                  >
-                    ✕
-                  </button>
-
-                </div>
+                  ✕
+                </button>
+              </div>
 
               ))}
 
