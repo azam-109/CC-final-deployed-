@@ -29,12 +29,10 @@ const httpServer = createServer(app); // // ← NEW: wrap express in http server
 
 
 // Socket.io setup
-const io = new Server(httpServer, {             // ← NEW
+const io = new Server(httpServer, {
   cors: {
-    origin: [
-      "http://localhost:5173",
-      process.env.FRONTEND_URL,
-    ],
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
@@ -46,17 +44,16 @@ app.use(cookieParser()); // For parsing cookies
 app.use(express.json()); //
 
 // CORS: allow frontend in both dev & prod
-const allowedOrigins = [
-  "http://localhost:5173", // dev
-  process.env.FRONTEND_URL  // prod (Vercel URL)
-];  
+// const allowedOrigins = [
+//   "http://localhost:5173", // dev
+//   process.env.FRONTEND_URL  // prod (Vercel URL)
+// ];  
 
 
 app.use(cors({
-  origin: "https://cc-final-deployed-1.onrender.com",
-  credentials: true
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
 }));
-
 
 // Routes
 app.use("/user", userRoute);
