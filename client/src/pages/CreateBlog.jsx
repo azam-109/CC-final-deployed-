@@ -43,6 +43,23 @@ const handleFileChange = (e) => {
   e.target.value = null;
 };
 
+// Remove image and its preview by index
+const removeImage = (indexToRemove) => {
+
+  // remove file
+  const updatedFiles = files.filter(
+    (_, index) => index !== indexToRemove
+  );
+
+  // remove preview
+  const updatedPreviews = previews.filter(
+    (_, index) => index !== indexToRemove
+  );
+
+  setFiles(updatedFiles);
+  setPreviews(updatedPreviews);
+};
+
 
   // ── PRESIGNED URL UPLOAD ──
   const uploadImagesToS3 = async () => {
@@ -243,10 +260,33 @@ const handleFileChange = (e) => {
           />
           {previews.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-3">
+
               {previews.map((src, i) => (
-                <img key={i} src={src} alt={`preview-${i}`}
-                  className="w-24 h-24 object-cover rounded-lg border border-gray-200"/>
+
+                <div
+                  key={i}
+                  className="relative"
+                >
+
+                  <img
+                    src={src}
+                    alt={`preview-${i}`}
+                    className="w-24 h-24 object-cover rounded-lg border border-gray-200"
+                  />
+
+                  {/* Remove button */}
+                  <button
+                    type="button"
+                    onClick={() => removeImage(i)}
+                    className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-md"
+                  >
+                    ✕
+                  </button>
+
+                </div>
+
               ))}
+
             </div>
           )}
           {uploading && (
