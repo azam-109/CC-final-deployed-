@@ -13,7 +13,7 @@ function Navbar() {
     const fetchUser = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/user/me`,
+          `${import.meta.env.VITE_API_URL}/user/me`,
           {
             credentials: "include",
           }
@@ -37,7 +37,7 @@ function Navbar() {
     const fetchUnreadCount = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/chat/unread-count`,
+          `${import.meta.env.VITE_API_URL}/chat/unread-count`,
           {
             credentials: "include",
           }
@@ -72,7 +72,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/user/logout`,
+        `${import.meta.env.VITE_API_URL}/user/logout`,
         {
           method: "POST",
           credentials: "include",
