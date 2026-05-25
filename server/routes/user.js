@@ -21,13 +21,27 @@ router.get("/:id", async (req, res) => {
 });
 
 // Node.js Express logout route
+// router.post("/logout", (req, res) => {
+//   res.clearCookie("token", {
+//     httpOnly: true,
+//     sameSite: "Lax", // or "None" if using cross-origin and secure cookies
+//     secure: false,   // true if using HTTPS in production
+//   });
+//   res.status(200).json({ message: "Logged out successfully" });
+// });
+
+// Updated logout route for production with secure cookies
 router.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "Lax", // or "None" if using cross-origin and secure cookies
-    secure: false,   // true if using HTTPS in production
+    sameSite: "none",
+    secure: true,
+    path: "/",
   });
-  res.status(200).json({ message: "Logged out successfully" });
+
+  return res.status(200).json({
+    message: "Logged out successfully",
+  });
 });
 
 
