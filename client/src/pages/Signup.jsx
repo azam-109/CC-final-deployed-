@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import COLLEGES from "../components/colleges";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [form, setForm] = useState({
@@ -129,9 +130,9 @@ function Signup() {
 
         <div className="text-center mt-6 text-sm text-gray-500">
           Already have an account?{" "}
-          <a href="/login" className="text-indigo-600 hover:underline">
+          <Link to="/login" className="text-indigo-600 hover:underline">
             Log in
-          </a>
+          </Link>
         </div>
       </div>
     </div>
