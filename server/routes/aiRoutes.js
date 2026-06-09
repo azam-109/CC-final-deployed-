@@ -4,6 +4,6 @@ import { restrictToLoggedInUserOnly } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/suggest", restrictToLoggedInUserOnly, suggestAnswer);
+router.post("/suggest", restrictToLoggedInUserOnly,suggestAnswer);
 
 export default router;

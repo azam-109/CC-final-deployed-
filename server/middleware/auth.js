@@ -9,7 +9,7 @@ export const restrictToLoggedInUserOnly = async (req, res, next) => {
   }
 
   try {
-    const decoded = getUser(token); // contains _id
+    const decoded = getUser(token); // co
     const user = await User.findById(decoded._id).select("name email role college");
     if (!user) {
       return res.status(401).json({ error: "User not found." });
